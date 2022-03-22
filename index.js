@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const rescue = require('express-rescue');
+const rescue = require('express-rescue'); // trata o erro
+// const crypto = require('crypto');
 
 const talkerUtils = require('./utils');
 
@@ -27,12 +28,13 @@ app.get('/talker', rescue(async (req, res) => {
   }
 }));
 
-app.get('/talker/:id', rescue(async (req, res) => {
+app.get('/talker/:id', rescue(async (req, res) => { 
+  const { id } = req.params;
   const talkers = await talkerUtils.getTalker();
-  const talker = await talkers.find(({ id }) => id === req.params.id);
-
-  if (!talker) { 
+  const talkerID = talkers.find((talker) => talker.id === Number(id));
+  
+  if (!talkerID) { 
     return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
   } 
-    return res.status(200).json(talker);
+  return res.status(200).json(talkerID);
 }));
