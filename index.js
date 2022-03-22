@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 
 const getTalkerById = require('./endpoints/getTalkerById');
 const getTalker = require('./endpoints/getTalker');
+const login = require('./endpoints/login');
 
 const app = express();
 app.use(bodyParser.json());
@@ -22,3 +23,5 @@ app.listen(PORT, () => {
 app.get('/talker', getTalker);
 
 app.get('/talker/:id', getTalkerById);
+
+app.post('/login', login);
