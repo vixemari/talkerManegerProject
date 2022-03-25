@@ -6,7 +6,7 @@ const validateEmail = (email) => {
   return regexValidation.test(email);
 };
 
-const login = rescue(async (req, res, next) => {
+const login = rescue(async (req, res) => {
   const { email, password } = req.body;
   
   if (!email) {
@@ -22,7 +22,7 @@ const login = rescue(async (req, res, next) => {
   if (password.length < 6) {
     return res.status(400).json({ message: 'O "password" deve ter pelo menos 6 caracteres' });
   }
-  next();
+  
   const token = crypto.randomBytes(8).toString('hex');
   res.status(200).json({ token });
 });

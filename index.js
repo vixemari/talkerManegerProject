@@ -2,13 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const getTalkerById = require('./endpoints/getTalkerById');
-const getTalker = require('./endpoints/getTalker');
+const getTalkers = require('./endpoints/getTalker');
 const login = require('./endpoints/login');
 const { auth, 
-  validateName,
-  validateDate,
+  validateName,  
   validateAge, 
-  validateRate, 
+  validateDate, 
+  validateRate,
   validateTalk } = require('./validateData');
   const postTalker = require('./endpoints/postTalker');
 
@@ -23,15 +23,15 @@ app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
-app.listen(PORT, () => {
-  console.log('Online');
-});
-
-app.get('/talker', getTalker);
+app.get('/talker', getTalkers);
 
 app.get('/talker/:id', getTalkerById);
 
 app.post('/login', login);
 
-// app.post('/talker', postTalker, auth,
-//  validateName, validateAge, validateDate, validateRate, validateTalk);
+app.post('/talker', auth,
+validateName, validateAge, validateTalk, validateRate, validateDate, postTalker);
+
+app.listen(PORT, () => {
+  console.log('Online');
+});
