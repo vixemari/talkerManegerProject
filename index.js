@@ -32,6 +32,8 @@ app.post('/login', login);
 app.post('/talker', auth,
 validateName, validateAge, validateTalk, validateRate, validateDate, postTalker);
 
+// app.put('/talker/:id', auth, validateName, validateAge, validateTalk, validateRate, validateDate, getTalkerById)
+
 app.listen(PORT, () => {
   console.log('Online');
 });

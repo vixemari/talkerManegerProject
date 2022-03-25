@@ -37,14 +37,14 @@ const validateAge = (req, res, next) => {
 };
 
 const DateFormat = (date) => {
-  const regexValidation = /^\d{4}-\d{2}-\d{2}$/;
+  const regexValidation = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
   return regexValidation.test(date);
 };
 
-const validateTalkInfo = (req, res, next) => {
+const validateDate = (req, res, next) => {
   const { talk } = req.body;
   const { watchedAt } = talk;
-
+  
   if (!DateFormat(watchedAt)) {
     return res.status(400).json({ message: 'O campo "watchedAt" deve ter o formato "dd/mm/aaaa"' });
   }  
@@ -70,4 +70,4 @@ const validateTalk = (req, res, next) => {
   next();
 };
 
-module.exports = { auth, validateName, validateAge, validateTalkInfo, validateRate, validateTalk };
+module.exports = { auth, validateName, validateAge, validateDate, validateRate, validateTalk };
