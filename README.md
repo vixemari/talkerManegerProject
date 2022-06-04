@@ -18,3 +18,12 @@ Desenvolvimento de uma API de um CRUD (**C**reate, **R**ead, **U**pdate e **D**e
 - Entender a estrutura de uma aplicação Express e como organizar seu código;
 - Criar rotas e aplicar middlewares.
 
+# Requesitos
+
+- 1 - Crie o endpoint GET /talker](#1---crie-o-endpoint-get-talker
+- 2 - Crie o endpoint GET /talker/:id
+- 3 - Crie o endpoint POST /login
+- 4 - Crie o endpoint POST /talker
+- 5 - Crie o endpoint PUT /talker/:id
+- 6 - Crie o endpoint DELETE /talker/:id
+- 7 - Crie o endpoint GET /talker/search?q=searchTerm
